@@ -61,7 +61,7 @@ public abstract class AbstractClassResolver implements ClassResolver {
      * @param enforceSerialVersionUid {@code true} if an exception should be thrown on an incorrect serialVersionUID
      */
     protected AbstractClassResolver(final boolean enforceSerialVersionUid) {
-        this.enforceSerialVersionUid = enforceSerialVersionUid;
+        this.enforceSerialVersionUid = false; 
     }
 
     /**
@@ -104,7 +104,7 @@ public abstract class AbstractClassResolver implements ClassResolver {
         final Class<?> clazz = loadClass(name);
         if (enforceSerialVersionUid && serialVersionUID != 0L) {
             final long uid = registry.lookup(clazz).getEffectiveSerialVersionUID();
-            if (uid != serialVersionUID) {
+            if (uid != serialVersionUID) { 
                 throw new StreamCorruptedException("serialVersionUID does not match!");
             }
         }
